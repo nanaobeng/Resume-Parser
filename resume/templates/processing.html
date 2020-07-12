@@ -1,0 +1,905 @@
+
+<html>
+    <head>
+        {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+        {% endblock %}
+
+        <title>Resume</title>
+        {% endblock %}
+        <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+        <link href="{{ url_for('static', filename='css/icons/material-icons.css') }}" rel="stylesheet" type="text/css" >
+    </head>
+    <body>
+        {% block content %}
+
+        {% block scripts %}
+            <!-- Optional JavaScript -->
+            {{ bootstrap.load_js() }}
+
+        {% endblock %}
+        
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6 ">
+              
+                
+                <embed id="pdf_file" src="{{ url_for('static', filename='pdf/'+pdf) }}" style="width: 100%;height:100%"/>
+                
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-6 " style="overflow: scroll;">
+
+                    <div class="container-fluid">
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col" >
+                              <p style="color:white;background-color: 	#8EE64D;"><b class="pl-2">Heading</b></p>
+                              <div class="container-fluid">
+
+
+                              <div class="row">
+                                  <div class="col-4">
+                                      <b>Name</b>
+                                  </div>
+                                  <div class="col-2">
+                                      :
+                                  </div>
+                                  <div class="col-6">
+                                      
+                                      <div class="col-12" id="classname">
+                                              
+                                        <div class="input-group mb-3">
+                                          <input  class="form-control " type="text" value="{{name}}" />
+                                          <div class="input-group-append">
+                                            <button class="btn btn-primary" ><span class="material-icons">
+                                                person
+                                                </span></button>
+                                          </div>
+                                        </div>
+                                  </div>
+                                  </div>
+                              </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-4">
+                            <b>Email</b>
+                        </div>
+                        <div class="col-2">
+                            :
+                        </div>
+                        <div class="col-6">
+                            
+                            <div class="col-12" id="classemail">
+                                    
+                              <div class="input-group mb-3">
+                                <input  class="form-control " type="text" value="{{email}}" />
+                                <div class="input-group-append">
+                                  <button class="btn btn-primary" ><span class="material-icons">
+                                    email
+                                      </span></button>
+                                </div>
+                              </div>
+                        </div>
+                        </div>
+                    </div>
+            <hr>
+            <div class="row">
+                <div class="col-4">
+                    <b>Phone Number</b>
+                </div>
+                <div class="col-2">
+                    :
+                </div>
+                <div class="col-6">
+                    
+                    <div class="col-12" id="classphone">
+                            
+                      <div class="input-group mb-3">
+                        <input  class="form-control " type="text" value="{{number}}" />
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" ><span class="material-icons">
+                            call
+                              </span></button>
+                        </div>
+                      </div>
+                </div>
+                </div>
+            </div>
+                      <hr>
+                              <div class="row">
+                                  <div class="col-4">
+                                      <b>Date of Birth</b>
+                                  </div>
+                                  <div class="col-2">
+                                      :
+                                  </div>
+                                  <div class="col-6">
+                                       
+                                    <div class="col-12" id="classdob">
+                                              
+                                        <div class="input-group mb-3">
+                                          <input  class="form-control " type="text" value="" />
+                                          <div class="input-group-append">
+                                            <button class="btn btn-primary" ><span class="material-icons">
+                                                event
+                                                </span></button>
+                                          </div>
+                                        </div>
+                                  </div>
+                                  </div>
+                              </div>
+                      
+                      <hr>
+                              <div class="row">
+                                <div class="col-2">
+                                    <button class="btn btn-success" onclick="add_nationality('nationality')">
+                                        <i class="material-icons">add</i>
+                                      </button>
+                                </div>
+                                  <div class="col-5">
+                                      <b>Nationality</b>
+                                  </div>
+                                  <div class="col-1">
+                                      :
+                                  </div>
+                                  <div class="col-4">
+                                    <div class="row" id="nationality">
+                                        {% for nat in nationality %}
+                                        {% set t =  nat.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                        
+                                        <div class="col-12" id="class{{t}}">
+                                              
+                                            <div class="input-group mb-3">
+                                              <input id="input{{t}}" class="form-control nationalityclass" type="text" value="{{nat}}" />
+                                              <div class="input-group-append">
+                                                  <button id="{{t}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                              </div>
+                                            </div>
+                                      </div>
+                                        {% endfor %}
+                                    </div>
+                                  </div>
+                              </div>
+
+                              <hr>
+                              <div class="row">
+                                <div class="col-2">
+                                    <button class="btn btn-success" onclick="add_language('language')">
+                                        <i class="material-icons">add</i>
+                                      </button>
+                                </div>
+                                <div class="col-5">
+                                    <b>Languages</b>
+                                </div>
+                                <div class="col-1">
+                                    :
+                                </div>
+                                <div class="col-4">
+                                    <div class="row" id="language">
+                                        {% for lang in languages %}
+                                        {% set t =  lang.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                        <div class="col-12" id="class{{t}}">
+                                              
+                                              <div class="input-group mb-3">
+                                                <input id="input{{t}}" class="form-control langclass" type="text" value="{{lang}}" />
+                                                <div class="input-group-append">
+                                                    <button id="{{t}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                                </div>
+                                              </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                      <hr>
+                      
+                              <div class="row">
+                                <div class="col-2">
+                                <button class="btn btn-success" onclick="add_country_exp('country_experience')">
+                                    <i class="material-icons">add</i>
+                                  </button>
+                            </div>
+                                  <div class="col-5">
+                                      <b>Countries of Experience</b>
+                                  </div>
+                                  <div class="col-1">
+                                      :
+                                  </div>
+                                  <div class="col-4">
+                                      <div class="row" id="country_experience">
+                                          {% for c_exp in country %}
+                                          {% set c =  c_exp.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                    
+                                          <div class="col-12" id="class{{c}}">
+                                              
+                                            <div class="input-group mb-3">
+                                              <input id="input{{c}}" class="form-control cexpclass" type="text" value="{{c_exp}}" />
+                                              <div class="input-group-append">
+                                                  <button id="{{c}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                              </div>
+                                            </div>
+                                      </div>
+                                          {% endfor %}
+                                      </div>
+                                  </div>
+                              </div>
+                              </div>
+                          </div>
+                          
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                            <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Education</b></p>
+                            <div class="row">
+                                <div class="col-2">
+                                    <button class="btn btn-success" onclick="add_edu('edu')">
+                                        <i class="material-icons">add</i>
+                                      </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container">
+                                
+                                <div class="row" id="edu">
+                                
+                                    {% for e in edu %}
+                                    {% set t =  e.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                    
+                                    
+
+                                    
+                                 
+                            <div class="col-12" id="class{{t}}">
+                                <div class="input-group mb-3">
+                                    <input id="input{{t}}" class="form-control educlass" type="text" value="{{e}}" />
+                                    <div class="input-group-append">
+                                        <button id="{{t}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                    </div>
+                                  </div>
+                              
+                                
+                            </div>
+                                
+                                
+                        {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      
+                      
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col-12">
+                            <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Skills</b></p>
+                            <div class="row">
+                                <div class="col-2">
+                                    <button class="btn btn-success" onclick="add_skills('skills')">
+                                        <i class="material-icons">add</i>
+                                      </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container">
+                                
+                                <div class="row" id="skills">
+                                
+                                    {% for e in elist %}
+                                    {% set t =  e.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                    
+                                    
+
+                                    
+                                 
+                            <div class="col-6" id="class{{t}}">
+                                <div class="input-group mb-3">
+                                    <input id="input{{t}}" class="form-control testclass" type="text" value="{{e}}" />
+                                    <div class="input-group-append">
+                                        <button id="{{t}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                    </div>
+                                  </div>
+                              
+                                
+                            </div>
+                                
+                                
+                        {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col-12">
+                            <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Professional Association & Membership</b></p>
+                            <div class="row">
+                                <div class="col-2">
+                                    <button class="btn btn-success" onclick="add_professionCert('profClass')">
+                                        <i class="material-icons">add</i>
+                                      </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container">
+                                <div class="row" id="profClass">
+                                    {% for a in associations %}
+                                    {% set t =  a.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                   
+                                    
+                                    <div class="col-12" id="class{{t}}">
+                                        <div class="input-group mb-3"><input  class="form-control profclass" type="text"  value="{{a}}"/>
+                                            <div class="input-group-append">
+                                                <button id="{{t}}}"class="btn btn-danger" onclick="delete_input(this.id)">
+                                                    <i class="material-icons">delete</i></button>
+                                                </div></div></div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col" >
+                              <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Employment Records</b></p>
+                              <div class="row">
+                                <div class="col-2">
+                                    <button class="btn btn-success" onclick="add_employment('empClass')">
+                                        <i class="material-icons">add</i>
+                                      </button>
+                                </div>
+                            </div>
+                            <br>
+                              <div class="container-fluid">
+                                <div class="row" id="empClass">
+                                   {% for jb in joblist %}
+                                   {% set t =  jb.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+
+                                   <div class="col-12" id="class{{t}}">
+                                       <div class="alert alert-success alert-dismissible empAlert">
+                                           <button type="button" id="{{t}}" class="close empclass" onclick="delete_input(this.id)">&times;</button>
+                                           <div class="row">
+                                               <div class="col">
+                                                   <label>Date</label>
+                                                   <div class="input-group mb-3"><input   class="form-control empValue" type="text"  /></div>
+                                                </div></div><div class="row"><div class="col"><label>Employer</label>
+                                                    <div class="input-group mb-3"><input  class="form-control empValue" type="text"  /></div></div>
+                                                </div><div class="row"><div class="col"><label>Position(s) held</label><div class="input-group mb-3">
+                                                
+                                                    <textarea class="form-control empValue" rows="4" cols="50">{{jb}}</textarea>
+                                                </div></div></div></div>
+                                                </div>
+                                   {% endfor %}
+                                </div>
+                      
+                              
+                                
+                      
+                             
+                      
+                      
+                            
+                              </div>
+                          </div>
+                          
+                        </div>
+                      
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col" >
+                              <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Summary of Qualifying Experience</b></p>
+                              <div class="row">
+                                <div class="col-2">
+                                    <button class="btn btn-success" onclick="add_qualExperience('qualexClass')">
+                                        <i class="material-icons">add</i>
+                                      </button>
+                                </div>
+                            </div>
+                            <br>
+                              <div class="container-fluid">
+                             
+                      
+                              <div class="row">
+                                 
+                                  
+                              </div>
+                      
+                      
+                            
+                      
+                              <div class="row" id="qualexClass">
+                                 
+                        
+                              </div>
+                              </div>
+                          </div>
+                          
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                      </div>
+                    <div>
+                       
+                
+                        
+                    </div>
+                    <div class="row pull-right text-right">
+                        <div class="pull-right text-right"><button class="btn btn-primary pull-right" onclick="preview()"><span class="material-icons">
+                            event
+                            </span></button></div>
+                    </div>
+                </div>
+               
+        </div>
+        <div class="row">
+            <div class="container-fluid">
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col" >
+                      <p style="color:white;background-color: 	#8EE64D;"><b class="pl-2">Heading</b></p>
+                      <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-4">
+                              <b>Name</b>
+                          </div>
+                          <div class="col-2">
+                              :
+                          </div>
+                          <div class="col-6 final_name">
+                              
+                          </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="col-4">
+                            <b>Email</b>
+                        </div>
+                        <div class="col-2">
+                            :
+                        </div>
+                        <div class="col-6 final_email">
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-4">
+                            <b>Phone Number</b>
+                        </div>
+                        <div class="col-2">
+                            :
+                        </div>
+                        <div class="col-6 final_number">
+                            
+                        </div>
+                    </div>
+              
+                      <div class="row">
+                          <div class="col-4">
+                              <b>Date of Birth</b>
+                          </div>
+                          <div class="col-2">
+                              :
+                          </div>
+                          <div class="col-6 final_dob">
+                              
+                          </div>
+                      </div>
+              
+              
+                      <div class="row">
+                          <div class="col-4">
+                              <b>Nationality</b>
+                          </div>
+                          <div class="col-2">
+                              :
+                          </div>
+                          <div class="col-6 final_nationality">
+                             
+                          </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="col-4">
+                            <b>Languages</b>
+                        </div>
+                        <div class="col-2">
+                            :
+                        </div>
+                        <div class="col-6 final_languages">
+                           
+                        </div>
+                    </div>
+              
+              
+                      <div class="row">
+                          <div class="col-4">
+                              <b>Countries of Experience</b>
+                          </div>
+                          <div class="col-2">
+                              :
+                          </div>
+                          <div class="col-6 final_cexp">
+                              
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                    <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Education</b></p>
+                    <div class="container">
+                        <div class=" final_education" >
+              
+                        </div>
+                    </div>
+                </div>
+              </div>
+              
+              
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Skills</b></p>
+                    <div class="container">
+                        <div class=" final_skills">
+                           
+                        </div>
+                    </div>
+                </div>
+                </div>
+              
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Professional Association & Membership</b></p>
+                    <div class="container">
+                        <div class=" final_association">
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col" >
+                      <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Employment Records</b></p>
+                      <div class="container-fluid final_employment">
+                     
+              
+                    
+              
+              
+                     
+              
+              
+                      
+                      </div>
+                  </div>
+                  
+                </div>
+              
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col" >
+                      <p style="color:white;background-color: #8EE64D;"><b class="pl-2">Summary of Qualifying Experience</b></p>
+                      <div class="container-fluid">
+                     
+              
+                      <div class="row">
+                          <div class="col-4">
+                              <p>Select assignments, undertaken by include: </p>
+                          </div>
+                          <div class="col-8">
+                              :
+                          </div>
+                          
+                      </div>
+              
+              
+                    
+              
+                      <div class="final_qual">
+                          
+                
+                      </div>
+                      </div>
+                  </div>
+                  
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+              </div>
+        </div>
+   
+    {% endblock %}
+    
+<script>
+    function delete_input(id){
+        var split_char = ""
+        
+        if(id.includes('_')){
+           split_char = id.split('_')[1];
+           if(id.split('_')[0] == 'prof'){
+              
+            $("#classprof_"+split_char).remove(); 
+           }
+           if(id.split('_')[0] == 'emp'){
+              
+              $("#classemp_"+split_char).remove(); 
+             }
+             if(id.split('_')[0] == 'qualex'){
+              
+              $("#classqualex_"+split_char).remove(); 
+             }
+             if(id.split('_')[0] == 'cexp'){
+              
+              $("#classcexp_"+split_char).remove(); 
+             }
+             if(id.split('_')[0] == 'lang'){
+              
+              $("#classlang_"+split_char).remove(); 
+             }
+             if(id.split('_')[0] == 'nationality'){
+              
+              $("#classnationality_"+split_char).remove(); 
+             }
+        }
+        else{
+       $("#class"+id).remove();
+        }
+    }
+        
+</script>
+<script>
+    
+    function add_nationality(section){
+      
+      
+      var count = $('.nationalityclass').length;
+     $("#"+section).append('<div class="col-12" id="classnationality_'+count+'"><div class="input-group mb-3"><input  class="form-control nationalityclass" type="text"  /><div class="input-group-append"><button id="nationality_'+count+'"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button></div></div></div>');
+       
+   }
+</script>
+<script>
+    
+    function add_language(section){
+      
+      
+      var count = $('.langclass').length;
+     $("#"+section).append('<div class="col-12" id="classlang_'+count+'"><div class="input-group mb-3"><input  class="form-control langclass" type="text"  /><div class="input-group-append"><button id="lang_'+count+'"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button></div></div></div>');
+       
+   }
+</script>
+<script>
+    
+    function add_country_exp(section){
+      
+      
+      var count = $('.cexpclass').length;
+     $("#"+section).append('<div class="col-12" id="classcexp_'+count+'"><div class="input-group mb-3"><input  class="form-control cexpclass" type="text"  /><div class="input-group-append"><button id="cexp_'+count+'"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button></div></div></div>');
+       
+   }
+</script>
+<script>
+  function add_skills(section){
+      
+      
+   var count = $('.testclass').length;
+  $("#"+section).append('<div class="col-6" id="class'+count+'"><div class="input-group mb-3"><input  class="form-control testclass" type="text"  /><div class="input-group-append"><button id="'+count+'"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button></div></div></div>');
+    
+}
+  </script>
+
+
+<script>
+    function add_edu(section){
+     var count = $('.educlass').length;
+    $("#"+section).append('<div class="col-12" id="class'+count+'"><div class="input-group mb-3"><input  class="form-control educlass" type="text"  /><div class="input-group-append"><button id="'+count+'"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button></div></div></div>');
+      }
+    </script>
+
+<script>
+    function add_professionCert(section){
+     var count = $('.profclass').length + 1;
+    $("#"+section).append('<div class="col-12" id="classprof_'+count+'"><div class="input-group mb-3"><input  class="form-control profclass" type="text"  /><div class="input-group-append"><button id="prof_'+count+'"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button></div></div></div>');
+      }
+    </script>
+
+
+<script>
+    function add_employment(section){
+     var count = $('.empclass').length + 1;
+     var additional_count = count *10;
+
+    $("#"+section).append('<div class="col-12" id="classemp_'+count+'"><div class="alert alert-success alert-dismissible"><button type="button" id="emp_'+count+'" class="close empclass" onclick="delete_input(this.id)">&times;</button><div class="row"><div class="col"><label>Date</label><div class="input-group mb-3"><input  class="form-control empValue" type="text"  /></div></div></div><div class="row"><div class="col"><label>Employer</label><div class="input-group mb-3"><input  class="form-control empValue" type="text"  /></div></div></div><div class="row"><div class="col"><label>Position(s) held</label><div class="input-group mb-3"><textarea class="form-control empValue" rows="4" cols="50"></textarea></div></div></div></div></div>');
+    
+
+      }
+    </script>
+
+
+<script>
+    function add_qualExperience(section){
+     var count = $('.qualexclass').length + 1;
+     var additional_count = count *10;
+
+    $("#"+section).append('<br><div class="col-12 " id="classqualex_'+count+'"><div class="alert alert-success alert-dismissible" id="qualexclass"><button type="button" id="qualex_'+count+'" class="close " onclick="delete_input(this.id)">&times;</button><div class="row"><div class="col"><label>Name of the Assignment or Project :</label><textarea class="form-control qualexValue" rows="4" cols="50"></textarea></div></div></div>');
+    
+
+      }
+    </script>
+
+    <script>
+        function preview(){
+            var name = $("#classname :input").val(); 
+            var email = $("#classemail :input").val(); 
+            var dob = $("#classdob :input").val(); 
+            var number = $("#classphone :input").val(); 
+            var nationality = [] 
+
+            
+            var div = document.getElementById('nationality');
+            $(div).find('input:text')
+                .each(function() {
+                     nationality.push($(this).val());
+             });
+             var language = [] 
+            var div = document.getElementById('language');
+            $(div).find('input:text')
+                .each(function() {
+                     language.push($(this).val());
+             });
+
+             var country_experience = [] 
+            var div = document.getElementById('country_experience');
+            $(div).find('input:text')
+                .each(function() {
+                    country_experience.push($(this).val());
+             });
+             var education = [] 
+            var div = document.getElementById('edu');
+            $(div).find('input:text')
+                .each(function() {
+                    education.push($(this).val());
+             });
+
+             var skills = [] 
+            var div = document.getElementById('skills');
+            $(div).find('input:text')
+                .each(function() {
+                    skills.push($(this).val());
+             });
+
+             var professional_membership = [] 
+            var div = document.getElementById('profClass');
+            $(div).find('input:text')
+                .each(function() {
+                    professional_membership.push($(this).val());
+             });
+
+
+             var qualifying_experience = [] 
+            var div = document.getElementById('qualexClass');
+            $(div).find('.qualexValue')
+                .each(function() {
+                    
+
+                    qualifying_experience.push($(this).val());
+             });
+
+
+
+
+
+             var emp = []
+            var div = document.getElementById('empClass');
+            $(div).find('.empValue')
+                .each(function() {
+                    emp.push($(this).val());
+             });
+             var f_emp = []
+             var emp_count = emp.length;
+            
+             var div_count = 0
+             for(ec=0;ec<emp_count;ec = ec + 3){
+                // f_emp.push([emp[ec],emp[ec+1],emp[ec+2]])
+                 $('.final_employment').append('<br>');
+                 $('.final_employment').append( '<div class="row"><div class="col-4"><b>Date </b></div> <div class="col-2">:</div><div class="col-6">'+emp[ec]+'</div></div>');
+                 $('.final_employment').append( '<div class="row"><div class="col-4"><b>Employer </b></div> <div class="col-2">:</div><div class="col-6">'+emp[ec+1]+'</div></div>');
+                 $('.final_employment').append( '<div class="row"><div class="col-4"><b>Position(s) held </b></div> <div class="col-2">:</div><div class="col-6">'+emp[ec+2]+'</div></div>');
+             }
+
+
+            // var qualex_count = qualifying_experience.length;
+            
+           
+             //for(qc=0;qc<qualex_count;qc = qc++){
+                // f_emp.push([emp[ec],emp[ec+1],emp[ec+2]])
+               //  $('.final_qual').append('<br>f');
+              //  $('.final_qual').append( '<div class="row"><div class="col-4"><b>Name of the Assignment or Project</b></div> <div class="col-2">:</div><div class="col-6">'+qualifying_experience[qc]+'</div></div>');
+           //  }
+
+             $('.final_name').append(name)
+             $('.final_email').append(email)
+             $('.final_number').append(number)
+             for(i=0;i<nationality.length;i++){
+             $('.final_nationality').append('<p><li> ' +nationality[i] + '</li></p>')
+             }
+             $('.final_dob').append(dob)
+             for(i=0;i<skills.length;i++){
+             $('.final_skills').append('<p><li> ' +skills[i] + '</li></p>')
+             }
+
+             for(i=0;i<education.length;i++){
+             $('.final_education').append('<p><li> ' +education[i] + '</li></p>')
+             }
+
+             for(i=0;i<professional_membership.length;i++){
+             $('.final_association').append('<p><li> ' +professional_membership[i] + '</li></p>')
+             }
+
+             for(i=0;i<language.length;i++){
+             $('.final_languages').append('<p><li> ' +language[i] + '</li></p>')
+             }
+                
+             
+             for(j=0;j<qualifying_experience.length;j++){
+                $('.final_qual').append('<br>');
+                $('.final_qual').append( '<div class="row"><div class="col-4"><b>Name of the Assignment or Project : </b></div> </div><div class="col-2"></div><div class="row"><div class="col-6">'+qualifying_experience[j]+'</div></div>');
+
+
+
+             }
+             
+        }
+    </script>
+
+
+
+
+    </body>
+</html>
+
+
+
+
+        
+    
+    
+
