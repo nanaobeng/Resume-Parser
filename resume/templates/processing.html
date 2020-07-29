@@ -13,7 +13,10 @@
 
         <title>Resume</title>
         {% endblock %}
+        <script src="{{url_for('static',filename='js/print.min.js')}}"></script>
+        <script src="{{url_for('static',filename='js/jspdf.js')}}"></script>
         <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+      
         <link href="{{ url_for('static', filename='css/icons/material-icons.css') }}" rel="stylesheet" type="text/css" >
     </head>
     <body>
@@ -25,15 +28,15 @@
 
         {% endblock %}
         
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-6 ">
+        <div class="row" id="main_view">
+            <div class="col-md-6 col-sm-6 col-xs-6 " style="max-height: 700px;">
               
                 
                 <embed id="pdf_file" src="{{ url_for('static', filename='pdf/'+pdf) }}" style="width: 100%;height:100%"/>
                 
                 </div>
 
-                <div class="col-md-6 col-sm-6 col-xs-6 " style="overflow: scroll;">
+                <div class="col-md-6 col-sm-6 col-xs-6 " style="overflow: scroll;max-height: 700px;">
 
                     <div class="container-fluid">
                         <br>
@@ -442,14 +445,16 @@
                         
                     </div>
                     <div class="row pull-right text-right">
-                        <div class="pull-right text-right"><button class="btn btn-primary pull-right" onclick="preview()"><span class="material-icons">
-                            event
-                            </span></button></div>
+                        <div class="pull-right text-right"><button class="btn btn-success pull-right" onclick="preview()"><span class="material-icons">
+                            check_circle_outline
+                            </span>Process Timesheet</button></div>
                     </div>
                 </div>
                
         </div>
-        <div class="row">
+        <div class="container" id="final_template" style="display: none;">
+        <div class="row " >
+            <div class="container">
             <div class="container-fluid">
                 <br>
                 <br>
@@ -634,8 +639,11 @@
                           
                 
                       </div>
+
+
                       </div>
                   </div>
+              
                   
                 </div>
                 <br>
@@ -646,7 +654,8 @@
                 <br>
               </div>
         </div>
-   
+        </div>
+    </div>
     {% endblock %}
     
 <script>
@@ -767,6 +776,9 @@
 
     <script>
         function preview(){
+            document.getElementById('main_view').style.display = 'none';
+            document.getElementById('final_template').style.display = 'block';
+           
             var name = $("#classname :input").val(); 
             var email = $("#classemail :input").val(); 
             var dob = $("#classdob :input").val(); 
@@ -892,6 +904,119 @@
 
 
 
+<script>
+    var _print = window.print;
+    window.print = function() {
+      setColors('body *');
+      setIconColors('body .fa');
+      _print();
+      setTimeout(function () {
+        resetColors('body *');
+        resetIconColors();
+      }, 100);
+    }
+    $("#printer").click(function () {
+        
+      
+    
+      window.print();
+
+
+    });
+  </script>
+
+
+<script>
+
+
+function setColors(selector) {
+var elements = $(selector);
+for (var i = 0; i < elements.length; i++) {
+var eltBackground = $(elements[i]).css('background-color');
+var eltColor = $(elements[i]).css('color');
+
+var elementStyle = elements[i].style;
+if (eltBackground) {
+  elementStyle.oldBackgroundColor = {
+    value: elementStyle.backgroundColor,
+    importance: elementStyle.getPropertyPriority('background-color'),
+  };
+  elementStyle.setProperty('background-color', eltBackground, 'important');
+}
+if (eltColor) {
+  elementStyle.oldColor = {
+    value: elementStyle.color,
+    importance: elementStyle.getPropertyPriority('color'),
+  };
+  elementStyle.setProperty('color', eltColor, 'important');
+}
+}
+}
+
+function resetColors(selector) {
+var elements = $(selector);
+for (var i = 0; i < elements.length; i++) {
+var elementStyle = elements[i].style;
+
+if (elementStyle.oldBackgroundColor) {
+  elementStyle.setProperty('background-color', elementStyle.oldBackgroundColor.value, elementStyle.oldBackgroundColor.importance);
+  delete elementStyle.oldBackgroundColor;
+} else {
+  elementStyle.setProperty('background-color', '', '');
+}
+if (elementStyle.oldColor) {
+  elementStyle.setProperty('color', elementStyle.oldColor.value, elementStyle.oldColor.importance);
+  delete elementStyle.oldColor;
+} else {
+  elementStyle.setProperty('color', '', '');
+}
+}
+}
+
+function setIconColors(icons) {
+var css = '';
+$(icons).each(function () {
+var path, node = $(this);
+while (node.length) {
+    var realNode = node[0], name = realNode.localName;
+    if (!name) break;
+    name = name.toLowerCase();
+
+    var parent = node.parent();
+
+    var sameTagSiblings = parent.children(name);
+    if (sameTagSiblings.length > 1) { 
+        allSiblings = parent.children();
+        var index = allSiblings.index(realNode) + 1;
+        if (index > 1) {
+            name += ':nth-child(' + index + ')';
+        }
+    }
+
+    path = name + (path ? '>' + path : '');
+    node = parent;
+}
+css += path + ':before { color: ' + $(this).css('color') + ' !important; }';
+});
+$('head').append('<style id="print-icons-style">' + css + '</style>');
+}
+
+function resetIconColors() {
+$('#print-icons-style').remove();
+}
+
+
+</script>
+<script>
+    var doc = new jsPDF();
+
+function saveDiv(divId, title) {
+doc.fromHTML('<html><head><title>"'+title+'"</title></head><body>' + document.getElementById(divId).innerHTML + '</body></html>');
+doc.save('div.pdf');
+}
+
+
+</script>
 
     </body>
 </html>

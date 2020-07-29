@@ -1,15 +1,72 @@
-<html>
-    <head>
-       <title>
-        Resume Parser
-       </title> 
-       <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
-    </head>
-    <body>
-        <h1>Upload new File</h1>
+<head>
+  {% block head %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  {% block styles %}
+      <!-- Bootstrap CSS -->
+      {{ bootstrap.load_css() }}
+  {% endblock %}
+
+  <title>Resume</title>
+  {% endblock %}
+  <script src="{{url_for('static',filename='js/print.min.js')}}"></script>
+  <script src="{{url_for('static',filename='js/jspdf.js')}}"></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+  
+  <link href="{{ url_for('static', filename='css/icons/material-icons.css') }}" rel="stylesheet" type="text/css" >
+  <link rel="stylesheet" href="{{url_for('static',filename='css/ficons.css')}}">
+</head>
+<body>
+  {% block content %}
+
+  {% block scripts %}
+      <!-- Optional JavaScript -->
+      {{ bootstrap.load_js() }}
+
+  {% endblock %}
+
+  
+    <div class="container-fluid">
+  
+      <div class="row">
+        <div class="col text-center" style="color: dimgray;"><h2>Resume Parser</h2></div>
+        
+    
+      </div>
+    </div>
+
+<br>
+
+<div class="container-fluid">
+
+<div class="row">
+  <div class="col text-center " >
+
+      <h1>Upload Resume</h1>
+      <p>Please upload only .pdf, .doc, .docx. and .txt files. <br> Files must not exceed 2MB</p>
+   <br><br>
+   <div>
+
+    
     <form method=post enctype=multipart/form-data>
       <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    </body>
-</html>
+      <input type=submit value=Parse>
+    </form></p>
+  </div>
+  
+  </div>
+  <div class="col justify-content-center text-center" style="background-color:orange;"><span class="material-icons  text-center" style="font-size: 250px;">
+    description
+    </span></div>
+
+</div>
+</div>
+{% endblock %}
+</body>
+
+
+
+
+ 
