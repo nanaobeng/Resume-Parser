@@ -157,13 +157,19 @@
                                     <div class="row" id="nationality">
                                         {% for nat in nationality %}
                                         {% set t =  nat.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                        {% set r = [0,1,2,3,4,5,343,3454,22,12,54565,3,23344,43335,21,12,33,24,776764,33433436,7,8,9]|random  %}
+                                  
+
+                                        {% set rand = t ~ r %}
+                                        {% set random = rand.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace('(', '').replace(')', '').replace('}', '').replace('{', '') %}
+                                     {% set val = random.replace(" ", "")%}
                                         
-                                        <div class="col-12" id="class{{t}}">
+                                        <div class="col-12" id="class{{val}}">
                                               
                                             <div class="input-group mb-3">
-                                              <input id="input{{t}}" class="form-control nationalityclass" type="text" value="{{nat}}" />
+                                              <input id="input{{val}}" class="form-control nationalityclass" type="text" value="{{nat}}" />
                                               <div class="input-group-append">
-                                                  <button id="{{t}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                                  <button id="{{val}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
                                               </div>
                                             </div>
                                       </div>
@@ -189,12 +195,18 @@
                                     <div class="row" id="language">
                                         {% for lang in languages %}
                                         {% set t =  lang.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
-                                        <div class="col-12" id="class{{t}}">
+                                        {% set r = [0,1,2,3,4,5,343,3454,22,12,54565,3,23344,43335,21,12,33,24,776764,33433436,7,8,9]|random  %}
+                                  
+
+                                        {% set rand = t ~ r %}
+                                        {% set random = rand.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace('(', '').replace(')', '').replace('}', '').replace('{', '') %}
+                                     {% set val = random.replace(" ", "")%}
+                                        <div class="col-12" id="class{{val}}">
                                               
                                               <div class="input-group mb-3">
-                                                <input id="input{{t}}" class="form-control langclass" type="text" value="{{lang}}" />
+                                                <input id="input{{val}}" class="form-control langclass" type="text" value="{{lang}}" />
                                                 <div class="input-group-append">
-                                                    <button id="{{t}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                                    <button id="{{val}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
                                                 </div>
                                               </div>
                                         </div>
@@ -220,13 +232,19 @@
                                       <div class="row" id="country_experience">
                                           {% for c_exp in country %}
                                           {% set c =  c_exp.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                          {% set r = [0,1,2,3,4,5,343,3454,22,12,54565,3,23344,43335,21,12,33,24,776764,33433436,7,8,9]|random  %}
+                                  
+
+                                          {% set rand = c ~ r %}
+                                          {% set random = rand.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace('(', '').replace(')', '').replace('}', '').replace('{', '') %}
+                                       {% set val = random.replace(" ", "")%}
                                     
-                                          <div class="col-12" id="class{{c}}">
+                                          <div class="col-12" id="class{{val}}">
                                               
                                             <div class="input-group mb-3">
-                                              <input id="input{{c}}" class="form-control cexpclass" type="text" value="{{c_exp}}" />
+                                              <input id="input{{val}}" class="form-control cexpclass" type="text" value="{{c_exp}}" />
                                               <div class="input-group-append">
-                                                  <button id="{{c}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                                  <button id="{{val}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
                                               </div>
                                             </div>
                                       </div>
@@ -256,17 +274,19 @@
                                 <div class="row" id="edu">
                                 
                                     {% for e in edu %}
-                                    {% set t =  e.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                    {% set t =  e.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace('(', '').replace(')', '').replace('}', '').replace('{', '') %}
                                     
-                                    
+                                    {% set r = [0,1,2,3,4,5,343,3454,22,12,54565,3,23344,43335,21,12,33,24,776764,33433436,7,8,9]|random  %}
+                                  
 
-                                    
-                                 
-                            <div class="col-12" id="class{{t}}">
+                                    {% set rand = t ~ r %}
+                                    {% set random = rand.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace('(', '').replace(')', '').replace('}', '').replace('{', '') %}
+                                 {% set val = random.replace(" ", "")%}
+                            <div class="col-12" id="class{{val}}">
                                 <div class="input-group mb-3">
-                                    <input id="input{{t}}" class="form-control educlass" type="text" value="{{e}}" />
+                                    <input id="input{{val}}" class="form-control educlass" type="text" value="{{e}}" />
                                     <div class="input-group-append">
-                                        <button id="{{t}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                        <button id="{{val}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
                                     </div>
                                   </div>
                               
@@ -301,15 +321,20 @@
                                     {% for e in elist %}
                                     {% set t =  e.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
                                     
-                                    
+                                    {% set r = [0,1,2,3,4,5,343,3454,22,12,54565,3,23344,43335,21,12,33,24,776764,33433436,7,8,9]|random  %}
+                                  
+
+                                    {% set rand = t ~ r %}
+                                    {% set random = rand.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace('(', '').replace(')', '').replace('}', '').replace('{', '') %}
+                                 {% set val = random.replace(" ", "")%}
 
                                     
                                  
-                            <div class="col-6" id="class{{t}}">
+                            <div class="col-6" id="class{{val}}">
                                 <div class="input-group mb-3">
-                                    <input id="input{{t}}" class="form-control testclass" type="text" value="{{e}}" />
+                                    <input id="input{{val}}" class="form-control testclass" type="text" value="{{e}}" />
                                     <div class="input-group-append">
-                                        <button id="{{t}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
+                                        <button id="{{val}}"class="btn btn-danger" onclick="delete_input(this.id)"><i class="material-icons">delete</i></button>
                                     </div>
                                   </div>
                               
@@ -340,12 +365,18 @@
                                 <div class="row" id="profClass">
                                     {% for a in associations %}
                                     {% set t =  a.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
-                                   
                                     
-                                    <div class="col-12" id="class{{t}}">
+                                    {% set r = [0,1,2,3,4,5,343,3454,22,12,54565,3,23344,43335,21,12,33,24,776764,33433436,7,8,9]|random  %}
+                                  
+
+                                    {% set rand = t ~ r %}
+                                    {% set random = rand.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace('(', '').replace(')', '').replace('}', '').replace('{', '').replace('{', '').replace('{', '') %}
+                                 {% set val = random.replace(" ", "").replace('{', '').replace('}', '')%}
+                                    
+                                    <div class="col-12" id="class{{val}}">
                                         <div class="input-group mb-3"><input  class="form-control profclass" type="text"  value="{{a}}"/>
                                             <div class="input-group-append">
-                                                <button id="{{t}}}"class="btn btn-danger" onclick="delete_input(this.id)">
+                                                <button id="{{val}}"class="btn btn-danger" onclick="delete_input(this.id)">
                                                     <i class="material-icons">delete</i></button>
                                                 </div></div></div>
                                     {% endfor %}
@@ -370,10 +401,15 @@
                                 <div class="row" id="empClass">
                                    {% for jb in joblist %}
                                    {% set t =  jb.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace(' ', '') %}
+                                   {% set r = [0,1,2,3,4,5,343,3454,22,12,54565,3,23344,43335,21,12,33,24,776764,33433436,7,8,9]|random  %}
+                                  
 
-                                   <div class="col-12" id="class{{t}}">
+                                   {% set rand = t ~ r %}
+                                   {% set random = rand.replace('-', '').replace('/', '').replace('.', '').replace('!', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('/', '').replace(':', '').replace(';', '').replace(',', '').replace('=', '').replace('+', '').replace('(', '').replace(')', '').replace('}', '').replace('{', '') %}
+                                {% set val = random.replace(" ", "")%}
+                                   <div class="col-12" id="class{{val}}">
                                        <div class="alert alert-success alert-dismissible empAlert">
-                                           <button type="button" id="{{t}}" class="close empclass" onclick="delete_input(this.id)">&times;</button>
+                                           <button type="button" id="{{val}}" class="close empclass" onclick="delete_input(this.id)">&times;</button>
                                            <div class="row">
                                                <div class="col">
                                                    <label>Date</label>
@@ -444,13 +480,17 @@
                 
                         
                     </div>
-                    <div class="row pull-right text-right">
-                        <div class="pull-right text-right"><button class="btn btn-success pull-right" onclick="preview()"><span class="material-icons">
-                            check_circle_outline
-                            </span>Process Timesheet</button></div>
-                    </div>
+                    
                 </div>
                
+        </div>
+        <div class="row" id="submit_resume">
+            <div class="col-12">
+               <button style="width:100%" class="btn btn-success " onclick="preview()"><b>Submit Resume   </b> <span class="material-icons ">
+                check_circle_outline
+                </span></button>
+
+            </div>
         </div>
         <div class="container" id="final_template" style="display: none;">
         <div class="row " >
@@ -464,8 +504,12 @@
                       <p style="color:white;background-color: 	#8EE64D;"><b class="pl-2">Heading</b></p>
                       <div class="container-fluid">
                       <div class="row">
+                      
+                          
                           <div class="col-4">
-                              <b>Name</b>
+                              <b>Name 
+                                
+                              2</b>
                           </div>
                           <div class="col-2">
                               :
@@ -660,6 +704,7 @@
     
 <script>
     function delete_input(id){
+        alert(id)
         var split_char = ""
         
         if(id.includes('_')){
@@ -777,6 +822,8 @@
     <script>
         function preview(){
             document.getElementById('main_view').style.display = 'none';
+            document.getElementById('submit_resume').style.display = 'none';
+            
             document.getElementById('final_template').style.display = 'block';
            
             var name = $("#classname :input").val(); 
